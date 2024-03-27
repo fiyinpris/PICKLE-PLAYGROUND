@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./main.css" />
+</head>
+<style>
+    input:focus {
+        outline: none;
+    }
+</style>
+
+<body class="bg-blue-100">
+    <div class="flex justify-between m-6 mx-20 pb-4">
+        <div>
+            <h6 class="text-xl text-gradient-to-br from-purple-400 to-gray-300 ">
+                PICKLE PLAYGROUND
+            </h6>
+        </div>
+        <div class="flex gap-7">
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToIndex()">Home</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToCreate()">Create</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToParents()">Parents</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToEducators()">Educators</h6>
+        </div>
+        <div>
+            <button class="w-full border border-2 border-black rounded-xl px-8 py-2" onclick="redirectToIndex()">
+                Sign In
+            </button>
+        </div>
+    </div>
+
+
+
+    <div class="flex items-center justify-center gap-40 mx-20 pt-5">
+        <div>
+            <button class="bg-yellow-200 p-2 rounded-3xl pl-4 pr-4">
+                Fun and Educatioanal
+            </button>
+            <h1 class="font-bold text-5xl mt-7 mb-7">
+                The Ultimate <br>Coding For Kids
+            </h1>
+            <h6 class="mb-7">
+                Create your free account and get started <br> with your playground
+            </h6>
+            <button class="w-3/5 bg-blue-900 p-2 rounded-xl text-white" onclick="redirectToSignin()">
+                Join for free
+            </button>
+        </div>
+        <div>
+            <div class="flex">
+                <img src="icons/first image.png">
+                <img class="absolute bottom-6 right-0 mr-20" src="icons/wavy.png">
+                <img class="absolute" src="icons/wavy2.png"
+                    style="top: 25%; left: 50%; transform: translate(-50%, -50%);">
+            </div>
+        </div>
+    </div>
+
+    <div class="flex bg-white border border-2 rounded-2xl h-1/2 p-8 ml-20 mr-20 mt-20 shadow-lg">
+        <div class="flex justify-between w-full items-center px-10">
+            <img src="icons/wavy3.png">
+            <img src="icons/Facts.png">
+            <img src="icons/wavy.png">
+        </div>
+    </div>
+
+
+    <div class="flex justify-between items-center mx-20 mt-10">
+        <h1 class="font-bold text-3xl">
+            Featured games
+        </h1>
+
+        <div class="flex gap-10 cursor-pointer">
+            <img id="prevBtn" src="icons/Next btn.png">
+            <img id="nextBtn" src="icons/Right.png">
+        </div>
+    </div>
+
+
+
+    <div id="gameContainer" class="flex mx-20 gap-7 mt-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 119.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 120.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 122.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 119.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 119.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 120.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 122.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="border bg-white rounded-xl">
+            <img class="rounded-t-xl" src="icons/image 119.png">
+            <div class="flex p-2 px-4 justify-between">
+                <h6 class="font-bold text-xl">Star Boy</h6>
+                <h6 class="text-gray-500">HTML, JS</h6>
+            </div>
+            <div class="flex justify-between pt-3 px-4 pb-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                    <h6>4.6</h6>
+                </div>
+                <div>
+                    <img class="cursor-pointer" src="icons/Chevron.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center mt-20">
+        <button class="bg-yellow-200 p-2 rounded-3xl pl-4 pr-4">
+            For Kids & Educators
+        </button>
+        <h1 class="mt-8 font-bold text-3xl text-center">
+            Build your game with code <br> anytime, anywhere.
+        </h1>
+
+        <h6 class="mt-5 text-center">
+            Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim <br> nec, proin faucibus nibh et sagittis a.
+            Lacinia purus ac amet.
+        </h6>
+
+        <img class="mt-10 bg-gradient-to-br from-yellow-300 via-purple-300 to-blue-300 border-green-600"
+            src="icons/factss.png">
+    </div>
+
+    <div class="flex items-center justify-center text-center mt-20">
+        <img src="icons/Frame.png">
+    </div>
+
+    <div class="flex flex-col items-center justify-center mt-20 bg-white ">
+        <h1 class="font-bold text-3xl mt-20">
+            Join Community
+        </h1>
+        <h6 class="text-center mt-8 text-gray-500">
+            Join exciting community of over 4000k+ kids and educators. Connect with <br> them to take your coding
+            learning
+            experience to the next level
+        </h6>
+
+        <button class=" bg-blue-900 p-2 mb-10 w-1/6 mt-8 rounded-xl text-white">
+            Get Started Now
+        </button>
+    </div>
+
+    <div class="">
+        <img class="w-full" src="icons/Section.png">
+    </div>
+
+    <div class="bg-blue-900 pb-10">
+        <div class="flex justify-between text-white p-10 pb-8">
+            <div>
+                <h4 class="font-bold text-xl mb-6">
+                    About
+                </h4>
+                <h6 class="text-gray-300">
+                    Pickle Playground Pickle Playground is a <br> web and mobile platform that teaches <br> kids math
+                    and computer
+                    programming <br> through interactive games and puzzles.
+                </h6>
+            </div>
+
+            <div class="text-gray-300">
+                <div>
+                    <h5 class="mb-6">
+                        FOR KIDS
+                    </h5>
+                </div>
+                <div>
+                    <h6 class="mb-3">Create game</h6>
+                    <h6 class="mb-3">Play game</h6>
+                    <h6 class="mb-3">Classes</h6>
+                    <h6>Blogs & Resources</h6>
+                </div>
+            </div>
+
+            <div class="text-gray-300">
+                <div>
+                    <h5 class="mb-6">
+                        FOR EDUCATORS
+                    </h5>
+                </div>
+                <div>
+                    <h6 class="mb-3">Overview</h6>
+                    <h6 class="mb-3">Curriculum</h6>
+                    <h6>Classroom</h6>
+                </div>
+            </div>
+
+            <div class="text-gray-300">
+                <div>
+                    <h4 class="mb-6">
+                        RESOUCRCES
+                    </h4>
+                </div>
+                <div>
+                    <h6 class="mb-3">Overview</h6>
+                    <h6 class="mb-3">Curriculum</h6>
+                    <h6 class="mb-3">Classroom</h6>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ml-10 mr-10 border-gray-500" style="border-width: 1px;"></div>
+
+        <div class="flex justify-between px-10 pt-5 text-white">
+            <h6>
+                © 2024 Pickle Playground, Inc. All rights reserved.
+            </h6>
+            <div class="flex gap-5">
+                <h6>
+                    Privacy policy
+                </h6>
+                <h6>
+                    Terms and Conditions
+                </h6>
+                <h6>
+                    Contact us
+                </h6>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function redirectToIndex() {
+            window.location.href = 'indexx.html'
+        }
+        function redirectToSignin() {
+            window.location.href = 'signin.html'
+        }
+
+
+
+
+        function redirectToCreate() {
+
+            var userHasAccount = true; // Assuming user has an account for demonstration
+
+            if (userHasAccount) {
+
+                redirectToDashboard();
+            } else {
+                redirectToCreateAccount();
+            }
+        }
+        function redirectToDashboard() {
+            window.location.href = "dashboard.html";
+        }
+
+        function redirectToCreateAccount() {
+            window.location.href = "create-account.html";
+        }
+        function redirectToIndex() {
+            window.location.href = "indexx.html";
+        }
+        function redirectToParents() {
+            window.location.href = "parents.html";
+        }
+        function redirectToEducators() {
+            window.location.href = "educators.html";
+        }
+
+    </script>
+</body>
+
+</html>

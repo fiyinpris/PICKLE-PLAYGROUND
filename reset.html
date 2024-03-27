@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./main.css" />
+    <style>
+        input:focus {
+            outline: none;
+        }
+
+        button {
+            outline: none;
+        }
+
+        button:focus,
+        button:active {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex items-center justify-center h-screen">
+        <div class="flex border border-1 p-6 rounded-2xl shadow-md items-center w-1/2 justify-center">
+            <div class="w-full ml-10 mr-10">
+                <div class="items-center">
+                    <div class="flex flex-col items-center justify-center">
+                        <h1 class="font-bold text-3xl">PICKLE PLAYGROUND</h1>
+                        <h6 class="mt-6 text-xl font-bold">Reset Password</h6>
+                        <h6 class="text-center pt-3">
+                            Enter your new password below.
+                        </h6>
+
+                        <div class="w-full">
+                            <div class="mb-2 mt-5">Enter New Password</div>
+                            <div>
+                                <input type="password" id="newPassword"
+                                    class="w-full p-3 border border-gray-300 rounded-md">
+                            </div>
+
+                            <div class="mb-2 mt-3">Confirm New Password</div>
+                            <div>
+                                <input type="password" id="confirmPassword"
+                                    class="w-full p-3 border border-gray-300 rounded-md">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col justify-center">
+                            <button class="border border-2 p-2 rounded-xl text-white bg-blue-900 mt-5"
+                                onclick="showSuccessMessage()">
+                                Reset Password
+                            </button>
+                            <h6 class="mt-8">Remember your password? <span class="text-blue-600 cursor-pointer"
+                                    onclick="redirectToSignin()">Sign in</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function redirectToDashboard() {
+            window.location.href = 'dashboard.html'
+        }
+
+        function showSuccessMessage() {
+            alert("Password successfully changed!");
+            redirectToDashboard();
+        }
+
+        function redirectToDashboard() {
+            window.location.href = "dashboard.html";
+        }
+
+        function redirectToSignin() {
+            window.location.href = "signin.html";
+        }
+    </script>
+
+</body>
+
+</html>
