@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./main.css" />
+</head>
+<style>
+    input:focus {
+        outline: none;
+    }
+
+    #menuToggle svg {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    #menuToggle {
+        padding: 4px;
+    }
+</style>
+
+<body class="bg-blue-100">
+    <div class="flex justify-between items-center m-10 mx-8 lg:mx-20  pb-4">
+        <div>
+            <h6 class="text-xl text-gradient-to-br from-purple-400 to-gray-300">
+                PICKLE PLAYGROUND
+            </h6>
+        </div>
+
+        <div class="sm:hidden">
+            <button id="mobile-menu-button" class="text-black hover:text-emerald-600 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden md:flex sm:flex gap-12 items-center">
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToIndex()">Home</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToCreate()">Create</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToParents()">Parents</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer" onclick="redirectToEducators()">Educators</h6>
+        </div>
+        <div class="hidden lg:block">
+            <button class="border border-2 border-black rounded-xl px-8 py-2 hover:bg-blue-700" onclick="redirectToIndex()">
+                Sign In
+            </button>
+        </div>
+    </div>
+
+
+    <div id="mobile-menu"
+        class="sm:hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 z-50 invisible opacity-0 transition-opacity duration-300 ease-in-out">
+        <div class="flex justify-end p-4">
+            <button id="close-mobile-menu" class="text-white hover:text-emerald-600 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-center text-white mt-20">
+            <h6 class="hover:text-blue-500 cursor-pointer mb-4" onclick="redirectToIndex()">Home</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer mb-4" onclick="redirectToCreate()">Create</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer mb-4" onclick="redirectToParents()">Parents</h6>
+            <h6 class="hover:text-blue-500 cursor-pointer mb-4" onclick="redirectToEducators()">Educators</h6>
+            <button class="border border-1 border-white rounded-xl px-8 py-2 bg-blue-900" onclick="redirectToIndex()">
+                Sign In
+            </button>
+        </div>
+    </div>
+
+
+
+    <div>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-40 mx-4 md:mx-10 pt-2 md:pt-5">
+            <div class="text-center md:text-left">
+                <button class="bg-yellow-200 p-2 rounded-3xl pl-4 pr-4">
+                    Fun and Educational
+                </button>
+                <h1 class="font-bold text-4xl md:text-5xl mt-7 mb-7">
+                    The Ultimate <br class="hidden md:inline">Coding For Kids
+                </h1>
+                <h6 class="mb-7">
+                    Create your free account and get started <br class="hidden md:inline">with your playground
+                </h6>
+                <button class=" md:p-2 md:w-5/6 lg:w-4/6 bg-blue-900 p-2 rounded-xl text-white px-8"
+                    onclick="redirectToSignin()">
+                    Join for free
+                </button>
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="relative">
+                    <img src="icons/first image.png">
+                    <img class="absolute right-0 bottom-0 transform translate-x-1/2"
+                        style="transform: translate(70%, -100%);" src="icons/wavy.png">
+                    <img class="absolute" src="icons/wavy2.png"
+                        style="top: 0%; left: 0%; transform: translate(-50%, -50%);">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex bg-white border border-2 rounded-2xl h-1/2 p-8 mx-4 md:mx-20 mt-20 shadow-lg">
+            <div class="flex justify-between w-full items-center px-10">
+                <img src="icons/wavy3.png">
+                <img src="icons/Facts.png">
+                <img src="icons/wavy.png">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="flex justify-between items-center mx-4 md:mx-20 mt-10">
+        <h1 class="font-bold text-3xl">
+            Featured games
+        </h1>
+
+        <div class="flex gap-4 md:gap-10 cursor-pointer">
+            <img id="prev-slide" src="icons/Next btn.png">
+            <img id="next-slide" src="icons/Right.png">
+        </div>
+    </div>
+
+
+
+    <!-- sliderTrack -->
+    <div class=" sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+        <div class="slider-container mx-20 mt-6">
+            <div id="sliderTrack" class="flex gap-8">
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 119.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 1">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 120.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 2">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 122.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 3">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 124.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- sliderTrack2 -->
+        <div class="slider-container mx-20 mt-6">
+            <div id="sliderTrack2" class="flex gap-8">
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 119.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 1">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 120.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 2">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 122.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 3">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 124.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border slider-item bg-white rounded-xl">
+                    <img class="rounded-t-xl" src="icons/image 124.png">
+                    <div class="flex p-2 px-4 justify-between">
+                        <h6 class="font-bold text-xl">Star Boy</h6>
+                        <h6 class="text-gray-500">HTML, JS</h6>
+                    </div>
+                    <div class="flex justify-between pt-3 px-4 pb-3">
+                        <div class="flex items-center gap-4">
+                            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+                            <h6>4.6</h6>
+                        </div>
+                        <div class="w-5">
+                            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="flex flex-col items-center justify-center mt-20">
+        <button class="bg-yellow-200 p-2 rounded-3xl pl-4 pr-4">
+            For Kids & Educators
+        </button>
+        <h1 class="mt-8 font-bold text-3xl text-center">
+            Build your game with code <br> anytime, anywhere.
+        </h1>
+
+        <h6 class="mt-5 text-center">
+            Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim <br> nec, proin faucibus nibh et sagittis a.
+            Lacinia purus ac amet.
+        </h6>
+
+        <img class="mt-10 bg-gradient-to-br from-yellow-300 via-purple-300 to-blue-300 border-green-600"
+            src="icons/factss.png">
+    </div>
+
+    <div class="flex items-center justify-center text-center mt-20">
+        <img src="icons/Frame.png">
+    </div>
+
+    <div class="flex flex-col items-center justify-center mt-20 bg-white w-full">
+        <h1 class="font-bold text-3xl mt-20">
+            Join Community
+        </h1>
+        <h6 class="text-center mt-8 text-gray-500">
+            Join exciting community of over 4000k+ kids and educators. Connect with <br> them to take your coding
+            learning
+            experience to the next level
+        </h6>
+
+        <button class="bg-blue-900 p-3 mb-10 md:p-2 md:w-1/3 lg:w-1/6 mt-8 rounded-xl text-white">
+            Get Started Now
+        </button>
+    </div>
+
+    <div class="">
+        <img class="w-full" src="icons/Section.png">
+    </div>
+
+    <div class="bg-blue-900 pb-10">
+        <div class="flex flex-col md:flex-row justify-between text-white p-10 pb-8">
+            <div class="md:w-1/4">
+                <h4 class="font-bold text-xl mb-6">
+                    About
+                </h4>
+                <h6 class="text-gray-300">
+                    Pickle Playground is a web and mobile platform that teaches kids math
+                    and computer programming through interactive games and puzzles.
+                </h6>
+            </div>
+
+            <div class="md:w-1/4 mt-6 md:mt-0">
+                <div>
+                    <h5 class="mb-6">
+                        FOR KIDS
+                    </h5>
+                </div>
+                <div>
+                    <h6 class="mb-3">Create game</h6>
+                    <h6 class="mb-3">Play game</h6>
+                    <h6 class="mb-3">Classes</h6>
+                    <h6>Blogs & Resources</h6>
+                </div>
+            </div>
+
+            <div class="md:w-1/4 mt-6 md:mt-0">
+                <div>
+                    <h5 class="mb-6">
+                        FOR EDUCATORS
+                    </h5>
+                </div>
+                <div>
+                    <h6 class="mb-3">Overview</h6>
+                    <h6 class="mb-3">Curriculum</h6>
+                    <h6>Classroom</h6>
+                </div>
+            </div>
+
+            <div class="md:w-1/4 mt-6 md:mt-0">
+                <div>
+                    <h4 class="mb-6">
+                        RESOURCES
+                    </h4>
+                </div>
+                <div>
+                    <h6 class="mb-3">Overview</h6>
+                    <h6 class="mb-3">Curriculum</h6>
+                    <h6 class="mb-3">Classroom</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="ml-10 mr-10 md:border-t border-gray-500 md:hidden" style="border-width: 1px;"></div>
+
+        <div class="flex flex-col md:flex-row justify-between px-10 pt-5 text-white">
+            <h6 class="mb-4 md:mb-0">
+                © 2024 Pickle Playground, Inc. All rights reserved.
+            </h6>
+            <div class="flex gap-5">
+                <h6>
+                    Privacy policy
+                </h6>
+                <h6>
+                    Terms and Conditions
+                </h6>
+                <h6>
+                    Contact us
+                </h6>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sliderTrack = document.getElementById("sliderTrack");
+            const sliderTrack2 = document.getElementById("sliderTrack2");
+            const nextButton = document.getElementById("next-slide");
+            const prevButton = document.getElementById("prev-slide");
+            const slideWidth = document.querySelector(".slider-item").offsetWidth;
+            let currentPosition = 0
+
+
+            nextButton.addEventListener("click", () => {
+                currentPosition -= slideWidth * 3;
+                sliderTrack.style.transform = `translateX(${currentPosition}px)`;
+                sliderTrack2.style.transform = `translateX(${currentPosition}px)`;
+
+                const newItem1 = document.createElement("div");
+                newItem1.className = "slider-item border bg-white rounded-xl";
+                newItem1.innerHTML = `
+    <img class="rounded-t-xl" src="icons/image 119.png" alt="Star Boy">
+    <div class="flex p-2 px-4 justify-between">
+        <h6 class="font-bold text-xl">Star Boy</h6>
+        <h6 class="text-gray-500">HTML, JS</h6>
+    </div>
+    <div class="flex justify-between pt-3 px-4 pb-3">
+        <div class="flex items-center gap-4">
+            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+            <h6>4.6</h6>
+        </div>
+        <div class="w-5">
+            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+        </div>
+    </div>
+`;
+                sliderTrack.appendChild(newItem1);
+                sliderTrack2.appendChild(newItem1.cloneNode(true));
+
+
+
+                const newItem2 = document.createElement("div");
+                newItem2.className = "slider-item border bg-white rounded-xl";
+                newItem2.innerHTML = `
+    <img class="rounded-t-xl" src="icons/image 120.png" alt="Star Boy">
+    <div class="flex p-2 px-4 justify-between">
+        <h6 class="font-bold text-xl">Star Boy</h6>
+        <h6 class="text-gray-500">HTML, JS</h6>
+    </div>
+    <div class="flex justify-between pt-3 px-4 pb-3">
+        <div class="flex items-center gap-4">
+            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+            <h6>4.6</h6>
+        </div>
+        <div class="w-5">
+            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+        </div>
+    </div>
+`;
+                sliderTrack.appendChild(newItem2);
+                sliderTrack2.appendChild(newItem2.cloneNode(true));
+
+
+
+                const newItem3 = document.createElement("div");
+                newItem3.className = "slider-item border bg-white rounded-xl";
+                newItem3.innerHTML = `
+    <img class="rounded-t-xl" src="icons/image 122.png" alt="Star Boy">
+    <div class="flex p-2 px-4 justify-between">
+        <h6 class="font-bold text-xl">Star Boy</h6>
+        <h6 class="text-gray-500">HTML, JS</h6>
+    </div>
+    <div class="flex justify-between pt-3 px-4 pb-3">
+        <div class="flex items-center gap-4">
+            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+            <h6>4.6</h6>
+        </div>
+        <div class="w-5">
+            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+        </div>
+    </div>
+`;
+                sliderTrack.appendChild(newItem3);
+                sliderTrack2.appendChild(newItem3.cloneNode(true));
+
+
+                const newItem4 = document.createElement("div");
+                newItem4.className = "slider-item border bg-white rounded-xl";
+                newItem4.innerHTML = `
+    <img class="rounded-t-xl" src="icons/image 124.png" alt="Star Boy">
+    <div class="flex p-2 px-4 justify-between">
+        <h6 class="font-bold text-xl">Star Boy</h6>
+        <h6 class="text-gray-500">HTML, JS</h6>
+    </div>
+    <div class="flex justify-between pt-3 px-4 pb-3">
+        <div class="flex items-center gap-4">
+            <span class="text-yellow-400 text-xl font-bold">&#9733;</span>
+            <h6>4.6</h6>
+        </div>
+        <div class="w-5">
+            <img class="cursor-pointer" src="icons/Chevron.png" alt="Image 4">
+        </div>
+    </div>
+`;
+                sliderTrack.appendChild(newItem4);
+                sliderTrack2.appendChild(newItem4.cloneNode(true));
+            });
+
+            prevButton.addEventListener("click", () => {
+                currentPosition += slideWidth * 4;
+                if (currentPosition > 0) {
+                    currentPosition = 0;
+                }
+                sliderTrack.style.transform = `translateX(${currentPosition}px)`;
+                sliderTrack2.style.transform = `translateX(${currentPosition}px)`;
+            });
+        });
+
+
+
+
+
+
+        function redirectToIndex() {
+            window.location.href = 'indexx.html'
+        }
+        function redirectToSignin() {
+            window.location.href = 'signin.html'
+        }
+
+
+
+
+        function redirectToCreate() {
+
+            var userHasAccount = true; // Assuming user has an account for demonstration
+
+            if (userHasAccount) {
+
+                redirectToDashboard();
+            } else {
+                redirectToCreateAccount();
+            }
+        }
+        function redirectToDashboard() {
+            window.location.href = "dashboard.html";
+        }
+
+        function redirectToCreateAccount() {
+            window.location.href = "create-account.html";
+        }
+        function redirectToIndex() {
+            window.location.href = "indexx.html";
+        }
+        function redirectToParents() {
+            window.location.href = "parents.html";
+        }
+        function redirectToEducators() {
+            window.location.href = "educators.html";
+        }
+
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('invisible');
+            mobileMenu.classList.toggle('opacity-100');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('invisible');
+            mobileMenu.classList.toggle('opacity-100');
+        });
+
+    </script>
+</body>
+
+</html>

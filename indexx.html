@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css" />
+    <style>
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex items-center justify-center">
+        <div class="border border-2 shadow-lg mt-8 mb-8 rounded-2xl p-20 items-center">
+            <div class="flex flex-col items-center justify-center">
+                <h1 class="font-bold text-3xl">PICKLE PLAYGROUND</h1>
+                <h4 class="mt-4 text-center">
+                    Create your free account and get started <br class="flex items-center justify-center">with your
+                    playground
+                </h4>
+            </div>
+            <div class="flex items-center justify-center border border-2 p-3 rounded-3xl w-full mt-10 cursor-pointer"
+                id="googleSignUpButton">
+                <img class="w-4" src="icons/google.png" alt="Google Logo">
+                <p class="ml-3">Sign up with Google</p>
+            </div>
+
+            <div class="flex items-center mb-5">
+                <div class="border w-full mt-8"></div>
+                <div class="pl-5 pr-5 pt-7">Or</div>
+                <div class="border w-full mt-8"></div>
+            </div>
+
+            <div>
+                <div class="mb-2">Your email</div>
+                <div>
+                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md">
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <div class="flex w-full justify-between items-center mt-3">
+                    <span class="mr-2">Your Password</span>
+                    <div class="flex items-center cursor-pointer gap-2" onclick="togglePassword()">
+                        <img class="w-4" src="icons/eye-slash-solid.svg" id="eyeIcon">
+                        <div id="toggleText">Hide</div>
+                    </div>
+                </div>
+                <div class="password-container relative mt-3">
+                    <input type="text" id="passwordInput" class="w-full p-3 border border-gray-300 rounded-md">
+                </div>
+            </div>
+
+            <div class="mt-5 w-full">
+                <h6>By creating an account, you agree to the <span class="text-blue-600"><u class="cursor-pointer">Terms
+                            of use</u></span>
+                    and <span class="text-blue-600"><u class="cursor-pointer">Privacy Policy</u></span></h6>
+            </div>
+
+            <div class="flex flex-col items-center justify-center mt-8">
+                <button class="border border-2 p-2 px-12 rounded-xl text-white bg-blue-900 mt-5"
+                    onclick="redirectToVerify('fiyinolaleke@gmail.com')">
+                    Create account
+                </button>
+                <h6 class="mt-5 text-blue-500 cursor-pointer">Already have an account? <span
+                        onclick="redirectToSignIn()">Sign in</span></h6>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('googleSignUpButton').addEventListener('click', function () {
+            var googleSignUpURL = 'https://accounts.google.com/signup';
+
+            window.open(googleSignUpURL, '_blank', 'width=600,height=600,menubar=no,toolbar=no,location=no,resizable=yes,scrollbars=yes');
+        });
+
+        function redirectToVerify(email) {
+            window.location.href = 'verify.html?email=' + encodeURIComponent(email);
+        }
+
+
+        function togglePassword() {
+            var passwordInput = document.getElementById('passwordInput');
+            var eyeIcon = document.getElementById('eyeIcon');
+            var toggleText = document.getElementById('toggleText');
+            var passwordError = document.getElementById('passwordError');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.src = 'icons/eye-slash-solid.svg';
+                toggleText.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.src = 'icons/eye-solid.svg';
+                toggleText.textContent = 'Show';
+            }
+
+            passwordError.textContent = '';
+        }
+
+        function validateEmail() {
+            var emailInput = document.getElementById('email');
+            var emailError = document.getElementById('emailError');
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.textContent = 'Invalid email format';
+            } else {
+                emailError.textContent = '';
+            }
+        }
+
+        function validatePassword() {
+            var passwordInput = document.getElementById('passwordInput');
+            var passwordError = document.getElementById('passwordError');
+
+            if (passwordInput.value.length < 8) { passwordError.textContent = 'Password must be at least 8 characters'; } else {
+                passwordError.textContent = '';
+            }
+        } document.getElementById('email').addEventListener('blur', validateEmail);
+        document.getElementById('passwordInput').addEventListener('blur', validatePassword);
+
+        function redirectToSignIn(email) {
+            window.location.href = 'signin.html'
+        }
+    </script>
+</body>
+
+</html>

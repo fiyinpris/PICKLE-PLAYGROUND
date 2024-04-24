@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+
+<style>
+    input:focus {
+        outline: none;
+    }
+
+    input[type="text"] {
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        padding: 0;
+        width: 90px;
+        color: black;
+    }
+
+    input[type="text"]:focus {
+        background-color: transparent !important;
+    }
+</style>
+
+<body class="bg-gray-100">
+    <nav>
+        <div class="flex justify-between items-center fixed w-full bg-white p-4 text-white top-0">
+            <div class=" text-2xl font-bold lg:ml-10 ">
+                <span class="font-bold pr-3 text-xl text-black cursor-pointer" onclick="redirectToDash()">&#60;</span>
+                <span class="text-black">LOGO</span>
+            </div>
+            <div class="flex items-center">
+                <span id="untitled" class="text-black mr-2 cursor-pointer" onclick="createTextInput()">Untitled</span>
+                <span id="slash" class="slash hidden">/</span>
+                <input id="textInput" type="text" class="border-b border-black focus:outline-none hidden">
+            </div>
+
+            <div>
+                <button class="border border-2 bg-blue-900 text-white font-bold-2xl lg:mr-10 p-1 px-7 rounded-xl"
+                    onclick="saveGame()">
+                    SAVE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="flex justify-between ml-4 mr-4 mb-2 gap-3 mt-20">
+        <h4 class="font-bold">
+            CODE BLOCKS
+        </h4>
+        <h4 class="font-bold">
+            CODE AREA
+        </h4>
+        <h4 class="font-bold">
+            STAGE
+        </h4>
+        <div class="flex gap-2 cursor-pointer ">
+            <img src="icons/expand 1.png">
+            <img src="icons/expand 2.png">
+        </div>
+    </div>
+
+
+    <div class="flex flex-row gap-2">
+        <div class="flex flex-row border border-2 bg-white rounded-2xl h-full w-4/5 ml-4">
+            <div
+                class="border border-2 border-t-0 border-l-0 border-b-0 w-1/4 h-full rounded-l-2xl flex flex-col items-center">
+                <div class="flex flex-col items-center justify-center pt-3">
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Motions</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Sound</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Looks</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Events</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Control</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Sensing</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-3">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Operators</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-4">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>Variable</h6>
+                    </div>
+                    <div class="flex flex-col items-center pb-40">
+                        <button class="border border-2 bg-white text-red p-4 w-9 rounded-xl"></button>
+                        <h6>My Blocks</h6>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flex flex-row w-full">
+                <div class="flex flex-row w-full h-90">
+                    <div class="flex flex-col w-1/2 pr-4 h-90">
+                        <div id="sourceContainer"
+                            class="flex flex-col border border-2 rounded-xl w-full h-full mt-2 ml-2">
+                            <h6 class="p-2">Movement</h6>
+                            <div class="cursor-pointer ml-2 mr-2">
+                                <img src="icons/Code 1.png" draggable="true" ondragstart="drag(event)" id="code1">
+                                <img src="icons/Code 2.png" draggable="true" ondragstart="drag(event)" id="code2">
+                                <img src="icons/Code 3.png" draggable="true" ondragstart="drag(event)" id="code3">
+                                <img src="icons/Code 4.png" draggable="true" ondragstart="drag(event)" id="code4">
+                                <img src="icons/Code 5.png" draggable="true" ondragstart="drag(event)" id="code5">
+                                <img src="icons/Code 6.png" draggable="true" ondragstart="drag(event)" id="code6">
+                            </div>
+                        </div>
+                        <div class="flex flex-col border border-2 rounded-xl w-full h-full mt-2 ml-2">
+                            <h6 class="p-2">Position</h6>
+                            <div class="cursor-pointer ml-2 mr-2">
+                                <img src="icons/Code 7.png" draggable="true" ondragstart="drag(event)" id="code7">
+                                <img src="icons/Code 8.png" draggable="true" ondragstart="drag(event)" id="code8">
+                                <img src="icons/Code 9.png" draggable="true" ondragstart="drag(event)" id="code9">
+                                <img src="icons/Code 10.png" draggable="true" ondragstart="drag(event)" id="code10">
+                                <img src="icons/Code 11.png" draggable="true" ondragstart="drag(event)" class="mt-2"
+                                    id="code11">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="h-120 overflow-y-scroll ">
+                    </div>
+                    <div id="targetContainer"
+                        class="flex flex-col p-2 border border-t-0 border-r-0 border-b-0 border-2 w-full h-full rounded-r-2xl ml-3"
+                        ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="flex flex-col h-120 w-1/2 mr-4">
+            <div class="relative flex bg-white justify-center items-center border border-2 rounded-2xl h-3/4 w-full mr-4"
+                id="container">
+                <img id="mickey" class="absolute ml-6 left-0" src="icons/Actor.png">
+                <img id="playButton" class="absolute right-0 p-3 w-20 h-13 cursor-pointer bottom-0" src="icons/play.png"
+                    onclick="startMovement()">
+                <img id="pauseButton"
+                    class="absolute right-0 m-3 p-3 cursor-pointer bottom-0 hidden bg-yellow-500 w-14 rounded-2xl h-14"
+                    src="icons/pausee.png" onclick="pauseMovement()">
+            </div>
+
+
+
+            <div class="border border-2 rounded-2xl h-1/3 mt-6">
+                <div class="flex justify-between p-4 items-center">
+                    <h4>
+                        ACTOR
+                    </h4>
+                    <div class="flex justify-center items-center cursor-pointer text-blue-900">
+                        <div onclick="openShareModal()" class="pr-1">
+                            <img src="icons/plus.png">
+                        </div>
+                        <div>
+                            <h4>
+                                Add actor
+                            </h4>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="border rounded-xl h-20 ml-2 mr-2 w-5/7 flex flex-row items-center px-6">
+                    <div
+                        class="flex items-center justify-center border border-l-0 border-t-0 border-b-0 h-20 w-1/6 relative">
+                        <img class="absolute inset-0 m-auto w-14 h-14 object-cover mr-5" src="icons/Actor.png">
+                    </div>
+
+                    <div class="flex gap-4 cursor-pointer items-center custom-background justify-between w-5/6">
+                        <div class="flex flex-col items-center justify-center">
+                            <input type="number" class="border ml-2 px-2 py-1 w-14 rounded-xl text-center" min="1"
+                                max="100" value="80">
+                            <p>
+                                Size
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <input type="number" class="border ml-2 px-2 py-1 w-14 rounded-xl text-center" min="1"
+                                max="100" value="80">
+                            <p>
+                                Direction
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <input type="number" class="border ml-2 px-2 py-1 w-14 rounded-xl text-center" min="1"
+                                max="100" value="10">
+                            <img src="icons/x.png">
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <input type="number" class="border ml-2 px-2 py-1 w-14 rounded-xl text-center" min="1"
+                                max="100" value="0">
+                            <img src="icons/y.png">
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center">
+                            <button class="px-4 py-1">
+                                <div class="flex gap-1">
+                                    <div class="w-1 h-1 rounded-md border border-gray-300"></div>
+                                    <div class="w-1 rounded-md border border-gray-300"></div>
+                                    <div class="w-1 rounded-md border border-gray-300"></div>
+                                </div>
+                            </button>
+                            <div>
+                                <button class="mt-2">More</button>
+                            </div>
+                        </div>
+
+                        <div id="shareModal" class="modal2">
+                            <div class="modal-content2">
+                                <div class="flex justify-between mb-5 items-center">
+                                    <button id="doneButton"
+                                        class="border border-2 bg-blue-900 text-white font-bold-2xl p-2 px-9 rounded-xl"
+                                        onclick="applyChangesAndCloseModal()">Done</button>
+                                    <div class="flex gap-3 cursor-pointer">
+                                        <img id="leftIcon" src="icons/left.png" alt="Undo Icon">
+                                        <img id="rightIcon" src="icons/right2.png" alt="Redo Icon">
+                                    </div>
+                                    <span class="close" onclick="closeShareModal()">&times;</span>
+                                </div>
+                                <div class="flex gap-5 mt-3">
+                                    <div
+                                        class="flex flex-col border-gray-300 rounded-lg items-center justify-center text-center cursor-pointer">
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool1" class="tool rounded-xl p-2" onclick="toggleToolHover(this)">
+                                                <img src="icons/tool1.png" alt="Tool 1">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool2" class="tool rounded-xl p-2"
+                                                onclick="enableTextMode(); toggleToolHover(this)">
+                                                <img src="icons/tool2.png" alt="Text Tool">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool3" class="tool rounded-xl px-3 p-3"
+                                                onclick="toggleToolHover(this)">
+                                                <img src="icons/tool3.png" alt="Tool 3">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool4" class="tool rounded-xl px-4 p-3"
+                                                onclick="toggleToolHover(this)">
+                                                <img src="icons/tool2.png" alt="Tool 1">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool5" class="tool rounded-xl p-2" onclick="toggleToolHover(this)">
+                                                <img src="icons/tool1.png" alt="Tool 2">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool6" class="tool rounded-xl p-2"
+                                                onclick="resetActorImage(); toggleToolHover(this)">
+                                                <img src="icons/tool4.png" alt="Eraser Tool">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool7" class="tool rounded-xl p-2"
+                                                onclick="changeActorImage('icons/black mickey.png'); toggleToolHover(this);">
+                                                <img src="icons/tool5.png" alt="Black Tool">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool8" class="tool rounded-xl p-2"
+                                                onclick="changeActorImage('icons/actor2.png') ; toggleToolHover(this)">
+                                                <img src="icons/tool6.png" alt="Blue Tool">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool9" class="tool rounded-xl p-2"
+                                                onclick="changeActorImage('icons/red mickey.png'); toggleToolHover(this)">
+                                                <img src="icons/tool7.png" alt="Red Tool">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col items-start pb-5">
+                                            <div id="tool10" class="tool rounded-xl p-2"
+                                                onclick="changeActorImage('icons/green mickey.png'); toggleToolHover(this)">
+                                                <img src="icons/tool8.png" alt="Green Tool">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="actorContainer" class="relative mt-8">
+                                        <img id="actorImage" class="absolute inset-0 mx-auto my-auto cursor-pointer"
+                                            src="icons/actor2.png" alt="Actor">
+                                        <img src="icons/canva back.png" alt="Background">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function changeActorImage(imageSrc) {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = imageSrc;
+        }
+
+        const originalActorImageSrc = "icons/actor2.png";
+        let currentActorImageSrc = originalActorImageSrc;
+
+        window.onload = function () {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = originalActorImageSrc;
+        };
+
+        function changeActorImage(imageSrc) {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = imageSrc;
+            currentActorImageSrc = imageSrc;
+        }
+
+        function resetActorImage() {
+            changeActorImage(originalActorImageSrc);
+        }
+
+        let textModeEnabled = false;
+
+        function enableTextMode() {
+            textModeEnabled = true;
+            const canvasBack = document.getElementById('canvasBack');
+            canvasBack.contentEditable = 'true';
+            canvasBack.focus();
+        }
+
+
+        document.addEventListener('click', function (event) {
+            if (textModeEnabled && !document.getElementById('canvasBack').contains(event.target)) {
+                textModeEnabled = false;
+            }
+        });
+
+        let activeTool = null;
+
+        function toggleToolHover(tool) {
+            if (activeTool !== tool) {
+                if (activeTool) {
+                    activeTool.classList.remove('hovered');
+                }
+                activeTool = tool;
+                activeTool.classList.add('hovered');
+            }
+        }
+
+        const tools = document.querySelectorAll('.tool');
+        tools.forEach(tool => {
+            tool.addEventListener('mouseleave', () => {
+                if (activeTool !== tool) {
+                    tool.classList.remove('hovered');
+                }
+            });
+        });
+
+        function saveGame() {
+            const confirmSave = confirm("Do you want to save your game?");
+
+            if (confirmSave) {
+                alert("Game saved successfully!");
+            } else {
+                console.log("Save cancelled by user.");
+            }
+        }
+
+
+        function openShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.style.display = 'block';
+        }
+
+        function closeShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.style.display = 'none';
+            document.body.style.filter = 'none';
+        }
+
+        closeShareModal();
+
+
+        function applyChangesAndCloseModal() {
+
+            var selectedActorImageUrl = "icons/red mickey.png";
+
+
+            document.getElementById("actorImage").src = selectedActorImageUrl;
+
+            closeShareModal();
+        }
+
+
+
+        function createTextInput() {
+
+            var slash = document.getElementById('slash');
+            var textInput = document.getElementById('textInput');
+
+            slash.classList.remove('hidden');
+            textInput.classList.remove('hidden');
+
+
+            textInput.focus();
+        }
+
+
+        const container = document.getElementById("container");
+        const mickey = document.getElementById("mickey");
+        const playButton = document.getElementById("playButton");
+        const pauseButton = document.getElementById("pauseButton");
+
+        let x = mickey.offsetLeft;
+        let direction = 1;
+        let intervalId = null;
+        let isPlaying = false;
+
+        function update() {
+            mickey.style.left = x + "px";
+        }
+
+        function moveMickeyOnOwn() {
+            if (!isPlaying) return;
+
+            if (x <= 0 || x >= container.offsetWidth - mickey.offsetWidth) {
+                direction *= -1;
+            }
+            x += 5 * direction;
+            update();
+        }
+
+        function startMickeyOnOwn() {
+            if (intervalId === null) {
+                isPlaying = true;
+                playButton.classList.add("hidden");
+                pauseButton.classList.remove("hidden");
+                intervalId = setInterval(moveMickeyOnOwn, 100);
+            }
+        }
+
+        function pauseMickeyOnOwn() {
+            if (intervalId !== null) {
+                isPlaying = false;
+                clearInterval(intervalId);
+                pauseButton.classList.add("hidden");
+                playButton.classList.remove("hidden");
+                intervalId = null;
+            }
+        }
+
+        let draggedImage;
+
+        function drag(event) {
+            draggedImage = event.target;
+            event.dataTransfer.setData("text/plain", null);
+            event.dataTransfer.setDragImage(event.target, 0, 0);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const targetContainer = event.target;
+            const droppedImage = draggedImage.cloneNode(true);
+            droppedImage.style.width = draggedImage.offsetWidth + 'px';
+            droppedImage.style.height = draggedImage.offsetHeight + 'px';
+            droppedImage.style.marginBottom = '10px';
+            targetContainer.appendChild(droppedImage);
+
+            if (draggedImage.id === 'code1') {
+                const code1DroppedCount = document.querySelectorAll('#targetContainer img[id="code1"]').length;
+
+                if (code1DroppedCount > 6) {
+                    moveMickey(-10, 200);
+                } else {
+
+                    moveMickey(10, 200);
+                }
+            }
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function moveMickey(times, duration) {
+            const mickey = document.getElementById('mickey');
+            const container = document.getElementById('container');
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width - mickey.offsetWidth;
+
+            let currentX = mickey.offsetLeft;
+            const targetX = currentX + containerWidth / times;
+
+            const step = containerWidth / (times * duration / 20);
+
+            const interval = setInterval(() => {
+                currentX += step;
+                mickey.style.left = currentX + 'px';
+
+                if ((currentX >= targetX && step > 0) || (currentX <= targetX && step < 0)) {
+                    clearInterval(interval);
+                }
+            }, 20);
+        }
+
+        playButton.addEventListener('click', startMickeyOnOwn);
+
+        pauseButton.addEventListener('click', pauseMickeyOnOwn);
+
+        const draggables = document.querySelectorAll('.draggable');
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', drag);
+        });
+
+        container.addEventListener('drop', drop);
+        container.addEventListener('dragover', allowDrop);
+
+    </script>
+</body>
+
+</html>

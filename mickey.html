@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mickey Movement</title>
+</head>
+<body>
+    <canvas id="canvas" width="1000px" height="600px"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let x = 0;
+        let y = 0;
+        let vxl = 0;
+        let vxr = 0;
+        let vyl = 0;
+        let vyr = 0;
+
+        // Load the PNG image
+        const img = new Image();
+        img.src = 'icons/Actor.png'; // Replace 'path_to_your_image.png' with the actual path to your PNG image
+
+        // Wait for the image to load
+        img.onload = function() {
+            update();
+        };
+
+        function update(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            x += vxl;
+            x += vxr;
+            y += vyl;
+            y += vyr;
+            ctx.drawImage(img, x, y, 100, 100); // Draw the image onto the canvas
+            requestAnimationFrame(update);
+        }
+
+        addEventListener("keydown", function(e){
+            if (e.code === 'KeyD') vxr = 5;
+            if (e.code == 'KeyA') vxl = -5;
+            if (e.code == 'KeyS') vyr = 5;
+            if (e.code == 'KeyW') vyl = -5;
+        });
+
+        addEventListener("keyup", function(e){
+            if (e.code === 'KeyD') vxr = 0;
+            if (e.code == 'KeyA') vxl = 0;
+            if (e.code == 'KeyS') vyr = 0;
+            if (e.code == 'KeyW') vyl = 0;
+        });
+    </script>
+</body>
+</html>

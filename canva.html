@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./main.css" />
+</head>
+
+<body>
+    <div>
+        <div class="w-4/6 h-1/6 ml-5 mr-5 bg-gray-100 p-7">
+            <div class="flex justify-between items-center">
+                <button class="border border-2 bg-blue-900 text-white font-bold-2xl p-2 px-9 rounded-xl">
+                    Done
+                </button>
+                <div class="flex gap-3 cursor-pointer">
+                    <img id="leftIcon" src="icons/left.png" alt="Undo Icon">
+                    <img id="rightIcon" src="icons/right2.png" alt="Redo Icon">
+                </div>
+    
+                <div>
+                    <img src="icons/cancel-01.png">
+                </div>
+            </div>
+    
+            <div class="flex gap-5 mt-3">
+                <div
+                    class="flex flex-col border-gray-300 rounded-lg items-center justify-center text-center cursor-pointer">
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool1" class="tool rounded-xl p-2" onclick="toggleToolHover(this)">
+                            <img src="icons/tool1.png" alt="Tool 1">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool2" class="tool rounded-xl p-2" onclick="enableTextMode(); toggleToolHover(this)">
+                            <img src="icons/tool2.png" alt="Text Tool">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool3" class="tool rounded-xl px-3 p-3" onclick="toggleToolHover(this)">
+                            <img src="icons/tool3.png" alt="Tool 3">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool4" class="tool rounded-xl px-4 p-3" onclick="toggleToolHover(this)">
+                            <img src="icons/tool2.png" alt="Tool 1">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool5" class="tool rounded-xl p-2" onclick="toggleToolHover(this)">
+                            <img src="icons/tool1.png" alt="Tool 2">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool6" class="tool rounded-xl p-2" onclick="resetActorImage(); toggleToolHover(this)">
+                            <img src="icons/tool4.png" alt="Eraser Tool">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool6" class="tool rounded-xl p-2"
+                            onclick="changeActorImage('icons/black mickey.png'); toggleToolHover(this)">
+                            <img src="icons/tool5.png" alt="Black Tool">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool7" class="tool rounded-xl p-2"
+                            onclick="changeActorImage('icons/actor2.png') ; toggleToolHover(this)">
+                            <img src="icons/tool6.png" alt="Blue Tool">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool8" class="tool rounded-xl p-2"
+                            onclick="changeActorImage('icons/red mickey.png'); toggleToolHover(this)">
+                            <img src="icons/tool7.png" alt="Red Tool">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start pb-5">
+                        <div id="tool9" class="tool rounded-xl p-2"
+                            onclick="changeActorImage('icons/green mickey.png'); toggleToolHover(this)">
+                            <img src="icons/tool8.png" alt="Green Tool">
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="actorContainer" class="relative mt-8">
+                    <img id="actorImage" class="absolute inset-0 mx-auto my-auto cursor-pointer" src="icons/actor2.png"
+                        alt="Actor">
+                    <img src="icons/canva back.png" alt="Background">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function changeActorImage(imageSrc) {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = imageSrc;
+        }
+
+        const originalActorImageSrc = "icons/actor2.png";
+        let currentActorImageSrc = originalActorImageSrc;
+
+        window.onload = function () {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = originalActorImageSrc;
+        };
+
+        function changeActorImage(imageSrc) {
+            const actorImage = document.getElementById('actorImage');
+            actorImage.src = imageSrc;
+            currentActorImageSrc = imageSrc;
+        }
+
+        function resetActorImage() {
+            changeActorImage(originalActorImageSrc);
+        }
+
+        let textModeEnabled = false;
+
+        function enableTextMode() {
+            textModeEnabled = true;
+            const canvasBack = document.getElementById('canvasBack');
+            canvasBack.contentEditable = 'true';
+            canvasBack.focus();
+        }
+
+        document.addEventListener('click', function (event) {
+            if (textModeEnabled && !document.getElementById('canvasBack').contains(event.target)) {
+                textModeEnabled = false;
+            }
+        });
+
+        let activeTool = null;
+
+        function toggleToolHover(tool) {
+            if (activeTool !== tool) {
+                if (activeTool) {
+                    activeTool.classList.remove('hovered');
+                }
+                activeTool = tool;
+                activeTool.classList.add('hovered');
+            }
+        }
+
+        const tools = document.querySelectorAll('.tool');
+        tools.forEach(tool => {
+            tool.addEventListener('mouseleave', () => {
+                if (activeTool !== tool) {
+                    tool.classList.remove('hovered');
+                }
+            });
+        });
+
+
+
+        let undoStack = [];
+        let redoStack = [];
+
+        function undoAction() {
+            if (undoStack.length > 0) {
+                let previousState = undoStack.pop();
+                redoStack.push(previousState);
+                applyState(previousState);
+            }
+        }
+
+        function redoAction() {
+            if (redoStack.length > 0) {
+                let nextState = redoStack.pop();
+                undoStack.push(nextState);
+                applyState(nextState);
+            }
+        }
+
+
+        function applyState(state) {
+            console.log("Applying state:", state);
+        }
+
+        document.getElementById("undoButton").addEventListener("click", undoAction);
+
+        document.getElementById("leftIcon").addEventListener("click", undoAction);
+
+        document.getElementById("rightIcon").addEventListener("click", redoAction);
+
+    </script>
+</body>
